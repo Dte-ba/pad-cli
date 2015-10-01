@@ -1,0 +1,29 @@
+{
+  "name": "pad",
+  "version": "1.0.0",
+  "description": "Interfaz de comandos para PAD",
+  "private": true,
+  "bin": {
+    "pad": "./bin/pad"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "author": "Dte-ba",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dte-ba/pad-cli"
+  },
+  "license": "GPL v3",
+  "bugs": "https://github.com/Dte-ba/pad-cli/issues",
+  "dependencies": {
+    "async": "^1.4.2",
+    "autocmdr": "~0.0.4",
+    "commander": "~2.0.0",
+    "fs-extra": "^0.24.0",
+    "lodash": "^3.10.1",
+    "promptly": "^0.2.1",
+    "ssh2": "^0.4.11"
+  },
+  "devDependencies": {}
+}
