@@ -23,7 +23,7 @@ module.exports = function(program) {
       async.waterfall([
 
         // get the host
-        /*function(cb){
+        function(cb){
           promptly.prompt(' Source: ', function (err, value) {
               schema.source = value;
               cb();
@@ -46,7 +46,7 @@ module.exports = function(program) {
               schema.appFolder = value;
               cb();
           });
-        },*/
+        },
         // create/clean destination
         function(cb){
           console.log(' Dist :: create/clean destination');
