@@ -2,7 +2,6 @@
   "name": "pad",
   "version": "0.1.0",
   "description": "Interfaz de comandos para PAD",
-  "private": true,
   "bin": {
     "pad": "./bin/pad"
   },

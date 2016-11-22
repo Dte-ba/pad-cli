@@ -1,0 +1,86 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'publish' ]
+2 info using npm@4.0.2
+3 info using node@v7.1.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/data/dev/dte/pad-project/pad-cli',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/nacho/.npm/pad/0.1.0/package.tgz not in flight; packing
+9 verbose correctMkdir /home/nacho/.npm correctMkdir not in flight; initializing
+10 info lifecycle pad@0.1.0~prepublish: pad@0.1.0
+11 silly lifecycle pad@0.1.0~prepublish: no script for prepublish, continuing
+12 info lifecycle pad@0.1.0~prepare: pad@0.1.0
+13 silly lifecycle pad@0.1.0~prepare: no script for prepare, continuing
+14 verbose tar pack [ '/home/nacho/.npm/pad/0.1.0/package.tgz',
+14 verbose tar pack   '/data/dev/dte/pad-project/pad-cli' ]
+15 verbose tarball /home/nacho/.npm/pad/0.1.0/package.tgz
+16 verbose folder /data/dev/dte/pad-project/pad-cli
+17 verbose addLocalTarball adding from inside cache /home/nacho/.npm/pad/0.1.0/package.tgz
+18 verbose correctMkdir /home/nacho/.npm correctMkdir not in flight; initializing
+19 silly cache afterAdd pad@0.1.0
+20 verbose afterAdd /home/nacho/.npm/pad/0.1.0/package/package.json not in flight; writing
+21 verbose correctMkdir /home/nacho/.npm correctMkdir not in flight; initializing
+22 verbose afterAdd /home/nacho/.npm/pad/0.1.0/package/package.json written
+23 silly publish { name: 'pad',
+23 silly publish   version: '0.1.0',
+23 silly publish   description: 'Interfaz de comandos para PAD',
+23 silly publish   private: true,
+23 silly publish   bin: { pad: './bin/pad' },
+23 silly publish   scripts: { test: 'mocha -R spec', dev: '' },
+23 silly publish   author: { name: 'Dte-ba' },
+23 silly publish   repository:
+23 silly publish    { type: 'git',
+23 silly publish      url: 'git+https://github.com/Dte-ba/pad-cli.git' },
+23 silly publish   license: 'GPL v3',
+23 silly publish   bugs: { url: 'https://github.com/Dte-ba/pad-cli/issues' },
+23 silly publish   dependencies:
+23 silly publish    { async: '^1.4.2',
+23 silly publish      autocmdr: '~0.0.4',
+23 silly publish      commander: '~2.0.0',
+23 silly publish      'fs-extra': '^0.24.0',
+23 silly publish      lodash: '^3.10.1',
+23 silly publish      'nw-builder': '^3.1.2',
+23 silly publish      promptly: '^0.2.1',
+23 silly publish      ssh2: '^0.4.11' },
+23 silly publish   devDependencies: {},
+23 silly publish   contributors: [ { name: 'delmosaurio', email: 'delmosaurio@gmail.com' } ],
+23 silly publish   readme: '# PAD Tools\n\n# Description\n\n[PAD](https://github.com/Dte-ba/pad)\'s command line interface\n\n# Usage\n\nTo install pad from npm, run:\n\n```\n$ npm install -g pad-cli\n```\n\n```node ./bin/pad --help```\n\n## License\n\nCopyright (c) 2015 Dte-ba\n\nGPL v3\n\n# Acknowledgments\n\nBuilt using [generator-commader](https://github.com/Hypercubed/generator-commander).\n',
+23 silly publish   readmeFilename: 'README.md',
+23 silly publish   gitHead: 'd7b6543d89e2fb95da934a59f0d1bc5dd1f2b174',
+23 silly publish   homepage: 'https://github.com/Dte-ba/pad-cli#readme',
+23 silly publish   _id: 'pad@0.1.0',
+23 silly publish   _shasum: 'f8707014719945229945819fb5101f1c51eb2433',
+23 silly publish   _from: '.' }
+24 info lifecycle pad@0.1.0~prepublishOnly: pad@0.1.0
+25 silly lifecycle pad@0.1.0~prepublishOnly: no script for prepublishOnly, continuing
+26 verbose getPublishConfig undefined
+27 verbose stack Error: This package has been marked as private
+27 verbose stack Remove the 'private' field from the package.json to publish it.
+27 verbose stack     at publish_ (/usr/lib/node_modules/npm/lib/publish.js:102:15)
+27 verbose stack     at Array.<anonymous> (/usr/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+27 verbose stack     at LOOP (/usr/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+27 verbose stack     at /usr/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+27 verbose stack     at done (/usr/lib/node_modules/npm/lib/utils/lifecycle.js:132:5)
+27 verbose stack     at LOOP (/usr/lib/node_modules/npm/node_modules/slide/lib/chain.js:7:26)
+27 verbose stack     at /usr/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+27 verbose stack     at /usr/lib/node_modules/npm/lib/utils/lifecycle.js:318:20
+27 verbose stack     at /usr/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:276:29
+27 verbose stack     at FSReqWrap.oncomplete (fs.js:111:15)
+28 verbose cwd /data/dev/dte/pad-project/pad-cli
+29 error Linux 4.8.8-2-ARCH
+30 error argv "/usr/bin/node" "/usr/bin/npm" "publish"
+31 error node v7.1.0
+32 error npm  v4.0.2
+33 error This package has been marked as private
+33 error Remove the 'private' field from the package.json to publish it.
+34 error If you need help, you may report this error at:
+34 error     <https://github.com/npm/npm/issues>
+35 verbose exit [ 1, true ]
