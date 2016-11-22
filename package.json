@@ -1,5 +1,5 @@
 {
-  "name": "pad",
+  "name": "pad-cli",
   "version": "0.1.0",
   "description": "Interfaz de comandos para PAD",
   "bin": {
