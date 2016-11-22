@@ -7,7 +7,8 @@
     "pad": "./bin/pad"
   },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R spec",
+    "dev": ""
   },
   "author": "Dte-ba",
   "repository": {
@@ -22,6 +23,7 @@
     "commander": "~2.0.0",
     "fs-extra": "^0.24.0",
     "lodash": "^3.10.1",
+    "nw-builder": "^3.1.2",
     "promptly": "^0.2.1",
     "ssh2": "^0.4.11"
   },

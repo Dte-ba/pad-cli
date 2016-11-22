@@ -13,9 +13,29 @@ module.exports = function(program) {
 
   program
     .command('sync')
+    .option('--host [host]')
+    .option('--port [port]')
+    .option('--username [username]')
+    .option('--destination [destination]')
+    .option('--source [source]')
+    .option('--output [output]')
     .version('1.0.0')
     .description('Sync local repository to online repository')
-    .action(function(){
+    .action(function(args){
+
+      var props = [
+        {caption: 'Host', prop: 'host' },
+        {caption: 'Username', prop: 'username' },
+        {caption: 'Port (22)', prop: 'port' },
+        {caption: 'Host Folder', prop: 'destination' },
+        {caption: 'Source', prop: 'source' },
+        {caption: 'Output', prop: 'output' },
+      ];
+
+      var defaults = {
+        port: 22
+      };
+
       var schema = {
         host: '',
         username: '',
@@ -28,58 +48,32 @@ module.exports = function(program) {
 
       async.waterfall([
 
-        // get the host
-        function(cb){
-          promptly.prompt(' Host: ', function (err, value) {
-              schema.host = value;
-              cb();
-          });
-        },
-        // get the host
-        function(cb){
-          promptly.prompt(' Port (22): ', {default: 22}, function (err, value) {
-              schema.port = schema.port;
-              cb();
-          });
-        },
-        // get the username
-        function(cb){
-          promptly.prompt(' Username: ', function (err, value) {
-              schema.username = value;
-              cb();
-          });
-        },
-        // get the password
-        function(cb){
-          promptly.password(' Pwd: ', function (err, pwd) {
-              schema.pwd = pwd;
-              cb();
-          });
-        },
-        // get the remote source
-        function(cb){
-          promptly.prompt(' Destination: ', function (err, value) {
-              schema.destination = value;
-              cb();
-          });
-        },
-        // get the local source
-        function(cb){
-          promptly.prompt(' Source: ', function (err, value) {
-              schema.source = value;
-              cb();
-          });
-        },
-        // get the output
-        function(cb){
-          promptly.prompt(' Output: ', function (err, value) {
-              schema.output = value;
-              cb();
-          });
-        }
+          function(cb){
+            async.eachSeries(
+              props,
+              function(prop, icb){
+                if (args[prop.prop]){
+                  schema[prop.prop] = args[prop.prop];
+                  return icb();
+                }
+                promptly.prompt(' '+prop.caption+': ', {default: defaults[prop.prop]}, function (err, value) {
+                  schema[prop.prop] = value;
+                  icb();
+                });
+              },
+              function(err) {
+                cb(err);
+              }
+            );
+          },
+          function(cb){
+            promptly.password(' Password for '+schema.username+': ', function (err, pwd) {
+                schema.pwd = pwd;
+                cb();
+            });
+          },
 
         ], function(err){
-
           var sm = new SyncManager(schema);
 
           sm.load(function(err){
