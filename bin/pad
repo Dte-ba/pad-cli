@@ -12,13 +12,11 @@ require('autocmdr/lib/package')(program);
 require('autocmdr/lib/config')(program);
 require('autocmdr/lib/help')(program);
 
-
-
 program
 	.parse(process.argv);
 
 if (program.args.length < 1 ) {
-	console.log('No command specified. See \'pad --help\':');
+	console.log('Se se ha especificado ningun comando. Tipea \'pad --help\':');
 	program.outputHelp();
 	process.exit(1);
 }
