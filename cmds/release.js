@@ -41,10 +41,10 @@ module.exports = function(program) {
       var distFolder = path.join(folder, '/dist');
       var appFolder = path.join(folder, '/app');
 
-			log.verbose('source directory', source);
-      log.verbose('output directory', output);
-      log.verbose('build directory', distFolder);
-      log.verbose('nw app directory', appFolder);
+			log.verbose('source folder', source);
+      log.verbose('output folder', output);
+      log.verbose('build folder', distFolder);
+      log.verbose('nw app folder', appFolder);
 
       async.waterfall([
         // :: version
