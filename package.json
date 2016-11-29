@@ -1,6 +1,6 @@
 {
   "name": "pad-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Interfaz de comandos para PAD",
   "bin": {
     "pad": "./bin/pad"

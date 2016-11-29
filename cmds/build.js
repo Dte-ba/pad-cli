@@ -174,7 +174,7 @@ module.exports = function(program) {
                 });
                
                 res.on('end', function () {
-                  console.write('\n');
+                  console.log('');
                   cb(null, release, filename);
                   log.verbose('::', 'saved on ' + filename);
                 });
