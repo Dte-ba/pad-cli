@@ -45,6 +45,7 @@ module.exports = function(program) {
     .option('-b, --beta', 'Tiene en cuenta versiones BETA')
     .option('-s, --latest', 'Compila la ultima versión')
     .option('-l, --list', 'Lista las versiones actuales')
+    .option('--force', 'Force to download')
     .option('--verbose', 'Muestra más información de lo que se esta haciendo')
     .description('Crea un portable del PAD')
     .action(function(args){
@@ -152,7 +153,12 @@ module.exports = function(program) {
 
           if (fs.existsSync(filename)){
             log.verbose('::', 'file exists');
-            return cb(null, release, filename);
+            if (args.force === true){
+              fs.removeSync(filename);
+            } else {
+              log.info('::', 'file exists, use --force to replace');
+              return cb(null, release, filename);
+            }
           }
 
           log.verbose('::', 'downloading ' + release.tarball_url);
@@ -161,16 +167,24 @@ module.exports = function(program) {
              .on('response', function(res) {
 
                 var len = parseInt(res.headers['content-length'], 10);
+                
+                var bar = {};
 
-                var bar = new ProgressBar('[pad-'+release.name+'] [:bar] :percent', {
-                  complete: '=',
-                  incomplete: ' ',
-                  width: 20,
-                  total: len
-                });
-
+                try {
+                  bar = new ProgressBar('[pad-'+release.name+'] [:bar] :percent', {
+                    complete: '=',
+                    incomplete: ' ',
+                    width: 20,
+                    total: len
+                  });
+                } catch(err){
+                  log.verbose('::', 'failing to make progress-bar');
+                }
+                
                 res.on('data', function (chunk) {
-                  bar.tick(chunk.length);
+                  if (bar){
+                    bar.tick(chunk.length);
+                  }
                 });
                
                 res.on('end', function () {
@@ -281,7 +295,8 @@ module.exports = function(program) {
           var nw = new NwBuilder({
               files: appFolder + '/**/**', // use the glob format
               buildDir: output,
-              platforms: platforms
+              platforms: platforms,
+              zip: false
           });
 
           log.info('nw', chalk.bold.green('building!'));
