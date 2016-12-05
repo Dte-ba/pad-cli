@@ -9,7 +9,6 @@ var request = require('request');
 var _ = require('lodash');
 var exec = require('child_process').exec;
 var inquirer = require("inquirer");
-var ProgressBar = require('progress');
 var got = require('gh-got');
 var targz = require('tar.gz');
 var osenv = require('osenv');
@@ -28,6 +27,7 @@ module.exports = function(program) {
     got(uri, {
       json: true,
       headers: {
+        'user-agent': 'https://github.com/Dte-ba/pad-cli',
         'accept': 'application/vnd.github.v3+json'
       }
     })
@@ -168,25 +168,8 @@ module.exports = function(program) {
 
                 var len = parseInt(res.headers['content-length'], 10);
                 
-                var bar = {};
+                log.info('::', chalk.bold.green('downloading ' + release.name + '...'));
 
-                try {
-                  bar = new ProgressBar('[pad-'+release.name+'] [:bar] :percent', {
-                    complete: '=',
-                    incomplete: ' ',
-                    width: 20,
-                    total: len
-                  });
-                } catch(err){
-                  log.verbose('::', 'failing to make progress-bar');
-                }
-                
-                res.on('data', function (chunk) {
-                  if (bar){
-                    bar.tick(chunk.length);
-                  }
-                });
-               
                 res.on('end', function () {
                   console.log('');
                   cb(null, release, filename);
