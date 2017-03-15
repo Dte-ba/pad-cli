@@ -45,6 +45,7 @@ module.exports = function(program) {
     .option('-b, --beta', 'Tiene en cuenta versiones BETA')
     .option('-s, --latest', 'Compila la ultima versión')
     .option('-l, --list', 'Lista las versiones actuales')
+    .option('-k, --sdk', 'Usa la version SDK de nwjs')
     .option('--force', 'Force to download')
     .option('--verbose', 'Muestra más información de lo que se esta haciendo')
     .description('Crea un portable del PAD')
@@ -221,6 +222,7 @@ module.exports = function(program) {
             
             cb(null, release, to);
           });
+        
         },
         function(release, appFolder, cb){
           var npmcommand = 'npm install --production --prefix '+ appFolder;
@@ -236,6 +238,7 @@ module.exports = function(program) {
               }
               cb(null, release, appFolder);
            });
+        
         },
         function(release, appFolder, cb){
 
@@ -272,14 +275,19 @@ module.exports = function(program) {
             }).catch(function(err){
               cb(err);
             });          
+        
         },
         function(platforms, release, appFolder, cb){
           var NwBuilder = require('nw-builder');
+
+          let flavor = args.sdk === true ? 'sdk' : 'normal';
+ 
           var nw = new NwBuilder({
               files: appFolder + '/**/**', // use the glob format
               buildDir: output,
               platforms: platforms,
-              zip: false
+              zip: false,
+              flavor: flavor
           });
 
           log.info('nw', chalk.bold.green('building!'));
@@ -294,6 +302,7 @@ module.exports = function(program) {
           }).catch(function (error) {
              cb(error);
           });
+        
         },
         function(cb){
           log.info('git', chalk.bold.green('ya tienes tu PAD portable'));
