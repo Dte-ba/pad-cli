@@ -225,13 +225,13 @@ module.exports = function(program) {
         
         },
         function(release, appFolder, cb){
-          var npmcommand = 'npm install --production --prefix '+ appFolder;
+          var npmcommand = 'npm install --production';
           log.verbose('npm', npmcommand)
 
           var exec = require('child_process').exec,
               child;
 
-           child = exec(npmcommand,
+           child = exec(npmcommand, { cwd: appFolder }
            function (err, stdout, stderr) {
               if (err) { 
                 return cb(err); 
