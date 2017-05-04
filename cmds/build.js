@@ -231,7 +231,7 @@ module.exports = function(program) {
           var exec = require('child_process').exec,
               child;
 
-           child = exec(npmcommand, { cwd: appFolder }
+           child = exec(npmcommand, { cwd: appFolder },
            function (err, stdout, stderr) {
               if (err) { 
                 return cb(err); 
